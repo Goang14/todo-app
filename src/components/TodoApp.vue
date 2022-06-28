@@ -36,7 +36,6 @@
           <tr v-for="index in tasks" :key="index">
             <td>{{ index.name }}</td>
             <td>{{ index.status }}</td>
-          
           <td class="text-center">
             <div @click="deleteTask(index)">
               <span class="fa fa-trash pointer"></span>
@@ -80,49 +79,27 @@ export default {
   },
 
   methods: {
-    /**
-     * Capitalize first character
-     */
     capitalizeFirstChar(str) {
       return str.charAt(0).toUpperCase() + str.slice(1);
     },
-
-    /**
-     * Change status of task by index
-     */
     changeStatus(index) {
       let newIndex = this.statuses.indexOf(this.tasks[index].status);
       if (++newIndex > 2) newIndex = 0;
       this.tasks[index].status = this.statuses[newIndex];
     },
-
-    /**
-     * Deletes task by index
-     */
     deleteTask(index) {
       this.tasks.splice(index, 1);
     },
-
-    /**
-     * Edit task
-     */
     editTask(index) {
       this.task = this.tasks[index].name;
       this.editedTask = index;
     },
-
-    /**
-     * Add / Update task
-     */
     submitTask() {
       if (this.task.length === 0) return;
-
-      /* We need to update the task */
       if (this.editedTask != null) {
         this.tasks[this.editedTask].name = this.task;
         this.editedTask = null;
       } else {
-        /* We need to add new task */
         this.tasks.push({
           name: this.task,
           status: this.status,
@@ -145,8 +122,7 @@ export default {
   -khtml-user-select: none; /* Konqueror HTML */
   -moz-user-select: none; /* Old versions of Firefox */
   -ms-user-select: none; /* Internet Explorer/Edge */
-  user-select: none; /* Non-prefixed version, currently
-                                  supported by Chrome, Edge, Opera and Firefox */
+  user-select: none; /* Non-prefixed version, currently                               supported by Chrome, Edge, Opera and Firefox */
 }
 .line-through {
   text-decoration: line-through;
